@@ -1,0 +1,4 @@
+.vscode/
+name
+*.o
+*.gch
