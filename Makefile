@@ -5,8 +5,7 @@ WX_LIBS := $(shell $(WX_CONFIG) --libs)
 APPLICATION := name
 OBJECTS := mainframe.o app.o
 
-LIBS += -lcurl -ljsoncpp `wx-config --libs net`
-LIBS += /usr/lib/x86_64-linux-gnu/libsqlite3.so.0
+LIBS += `wx-config --libs net`
 
 CXXFLAGS += `wx-config --cxxflags net`
 
