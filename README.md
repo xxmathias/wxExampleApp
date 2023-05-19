@@ -8,7 +8,7 @@
 
 # Dependecies
 
-In order to compile and run ttop, you will need the following dependencies:
+In order to compile and run `name`, you will need the following dependencies:
 
 
 # How to compile
