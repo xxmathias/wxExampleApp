@@ -27,6 +27,7 @@ private:
   wxButton* clearButton;
   wxButton* saveButton;
   wxButton* loadButton;
+  wxButton* newWindowButton;
   
   void OnTextInput1KeyDown(wxKeyEvent& key);
   void OnTextInput2KeyDown(wxKeyEvent& key);
@@ -35,7 +36,9 @@ private:
   void OnSaveButton(wxCommandEvent &event);
   void OnLoadButton(wxCommandEvent &event);
   int WriteInFile(std::string str, bool append);
+  void OnNewWindowButton(wxCommandEvent& event);
 
 };
+
 
 #endif // MAINFRAME_HPP

@@ -3,7 +3,7 @@ WX_CXXFLAGS := $(shell $(WX_CONFIG) --cxxflags)
 WX_LIBS := $(shell $(WX_CONFIG) --libs)
 
 APPLICATION := name
-OBJECTS := mainframe.o app.o
+OBJECTS := mainframe.o app.o NewWindow.o
 
 LIBS += `wx-config --libs net`
 

@@ -8,6 +8,9 @@
 #include <wx/string.h>
 #include <wx/spinctrl.h>
 
+#include "NewWindow.hpp"
+
+
 int MainFrame::WriteInFile(std::string str, bool append) {
   std::ofstream myfile;
   if(append) {
@@ -97,6 +100,11 @@ void MainFrame::OnTextInput2KeyDown(wxKeyEvent& key) {
   }
 }
 
+void MainFrame::OnNewWindowButton(wxCommandEvent& event) {
+    NewWindow *newWindow = new NewWindow("New Window", textInput1->GetValue());
+    newWindow->Show(true);
+}
+
 
 MainFrame::MainFrame(const wxString &title)
     : wxFrame(nullptr, wxID_ANY, title, wxDefaultPosition, wxDefaultSize,
@@ -140,5 +148,8 @@ MainFrame::MainFrame(const wxString &title)
   saveButton->Bind(wxEVT_BUTTON, &MainFrame::OnSaveButton, this);
   loadButton = new wxButton(panel, wxID_ANY, "LOAD", wxPoint(700, 1000), wxSize(200,200));
   loadButton->Bind(wxEVT_BUTTON, &MainFrame::OnLoadButton, this);
+
+  newWindowButton = new wxButton(panel, wxID_ANY, "New Window", wxPoint(700, 700), wxSize(200, 200));
+  newWindowButton->Bind(wxEVT_BUTTON, &MainFrame::OnNewWindowButton, this);
 }
 
