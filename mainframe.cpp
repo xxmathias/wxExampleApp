@@ -30,20 +30,16 @@ int MainFrame::WriteInFile(std::string str, bool append) {
 }
 
 void MainFrame::OnSaveButton(wxCommandEvent& event) {
-  if(textInput1->GetValue().ToStdString() != "") {
-    std::string text1 = textInput1->GetValue().ToStdString();
-    std::string text2 = textInput2->GetValue().ToStdString();
-    std::vector<std::string> text1v;
-    std::vector<std::string> text2v;
-    text1v.push_back(text1);
-    text2v.push_back(text2);
-    
-    // erase data and write ascii
-    for(auto& e : text1v) {WriteInFile(e, false);}
-    
-    // append hex
-    for(auto& e : text2v) {WriteInFile(e, true);}
+  if(textInput1->GetValue().IsEmpty()) {
+    return;
   }
+
+  std::string text1 = textInput1->GetValue().ToStdString();
+  std::vector<std::string> text1v;
+  text1v.push_back(text1);
+
+  // erase data and write ascii
+  for(auto& e : text1v) {WriteInFile(e, false);}
 }
 
 void MainFrame::OnLoadButton(wxCommandEvent& event) {
