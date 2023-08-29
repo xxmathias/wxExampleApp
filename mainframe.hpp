@@ -38,6 +38,12 @@ private:
   int WriteInFile(std::string str, bool append);
   void OnNewWindowButton(wxCommandEvent& event);
 
+
+  void OnHello(wxCommandEvent& event);
+  void OnExit(wxCommandEvent& event);
+  void OnAbout(wxCommandEvent& event);
+
+
 };
 
 
