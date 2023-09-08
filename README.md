@@ -1,10 +1,9 @@
 # name
 
-`name` desription
+`name` description
 
 # Screenshots
 
- 
 
 # Dependecies
 
@@ -22,9 +21,7 @@ Ensure you have a C++ compiler. If using g++:
 ```sh
 sudo apt-get install g++
 ```
-# How to compile
-
-Follow these steps:
+# How to compil
 
 Clone this repository to your local machine:
 
