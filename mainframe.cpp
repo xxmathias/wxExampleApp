@@ -7,42 +7,64 @@
 #include <filesystem>
 #include <wx/string.h>
 #include <wx/spinctrl.h>
-
+#include <wx/file.h>
 #include "NewWindow.hpp"
 
+void MainFrame::OnSaveAs(wxCommandEvent& event) {
+    wxString defaultFileName = "test.md";
+    wxString filePath = wxFileSelector("Save As", "", defaultFileName, ".md", "Markdown files (*.md)|*.md", wxFD_SAVE | wxFD_OVERWRITE_PROMPT, this);
+    
+    // Check if the user didn't cancel the dialog
+    if (!filePath.IsEmpty()) {
 
-int MainFrame::WriteInFile(std::string str, bool append) {
-  std::ofstream myfile;
-  if(append) {
+        // Generate the markdown content
+        wxString content;
+
+        content += "## Weapons\n";
+        content += "| Name | Strikes | Range | Type |\n";
+        content += "| ---- | ------- | ----- | ---- |\n";
+
+
+
+        // Write the markdown content to the file
+        wxFile file(filePath, wxFile::write);
+        if (file.IsOpened()) {
+            file.Write(content);
+            file.Close();
+            wxLogMessage("File saved successfully!");
+        } else {
+            wxLogMessage("Failed to save the file.");
+        }
+    }
+}
+
+
+void MainFrame::WriteInFile(const std::string& str) {
+    std::ofstream myfile;
     myfile.open("data.txt", std::ofstream::out | std::ofstream::app);
-  } else {
-    myfile.open("data.txt", std::ofstream::out);
-  }
 
-  if(myfile.is_open()){
-      myfile << str << std::endl;
-      myfile.close();
-  } else {
-      std::cerr << "Unable to open file" << std::endl;
-      return -1;
-  }
-  return 0;
+    if(myfile.is_open()) {
+        myfile << str << std::endl;
+        myfile.close();
+    } else {
+        std::cerr << "Unable to open file" << std::endl;
+    }
 }
 
 void MainFrame::OnSaveButton(wxCommandEvent& event) {
-  if(textInput1->GetValue().IsEmpty()) {
-    return;
-  }
+    std::string text1 = textInput1->GetValue().ToStdString();
+    std::string text2 = textInput2->GetValue().ToStdString();
+    
 
-  std::string text1 = textInput1->GetValue().ToStdString();
-  std::vector<std::string> text1v;
-  text1v.push_back(text1);
-
-  // erase data and write ascii
-  for(auto& e : text1v) {WriteInFile(e, false);}
+    // Clear the file first
+    std::ofstream clearFile("data.txt", std::ofstream::out | std::ofstream::trunc);
+    clearFile.close();
+    
+    WriteInFile(text1); 
+    WriteInFile(text2);  
 }
-
 void MainFrame::OnLoadButton(wxCommandEvent& event) {
+  // needs fix, only saves to 1st input field
   std::ifstream myfile;
   std::string str, ascii, hex;
   myfile.open("data.txt");
@@ -171,6 +193,7 @@ MainFrame::MainFrame(const wxString &title)
 
     wxMenu *menuFile = new wxMenu;
   menuFile->Append(ID_Hello, "&Hello...\tCtrl-H", "Help string shown in status bar for this menu item");
+  menuFile->Append(wxID_SAVE, "&Save As\tShift-Ctrl-S", "Help string shown in status bar for this menu item");
   menuFile->AppendSeparator();
   menuFile->Append(wxID_EXIT);
 
@@ -189,5 +212,6 @@ MainFrame::MainFrame(const wxString &title)
   menuBar->Bind(wxEVT_MENU, &MainFrame::OnHello, this, ID_Hello);
   menuBar->Bind(wxEVT_MENU, &MainFrame::OnAbout, this, wxID_ABOUT);
   menuBar->Bind(wxEVT_MENU, &MainFrame::OnExit, this, wxID_EXIT);
+  menuBar->Bind(wxEVT_MENU, &MainFrame::OnSaveAs, this, wxID_SAVE);
 }
 

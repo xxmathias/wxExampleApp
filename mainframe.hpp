@@ -35,13 +35,14 @@ private:
   void OnClearButton(wxCommandEvent &event);
   void OnSaveButton(wxCommandEvent &event);
   void OnLoadButton(wxCommandEvent &event);
-  int WriteInFile(std::string str, bool append);
+  void WriteInFile(const std::string& str);
   void OnNewWindowButton(wxCommandEvent& event);
 
 
   void OnHello(wxCommandEvent& event);
   void OnExit(wxCommandEvent& event);
   void OnAbout(wxCommandEvent& event);
+  void OnSaveAs(wxCommandEvent& event);
 
 
 };
