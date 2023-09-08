@@ -32,6 +32,23 @@ Compile the application with make:
 make
 ```
 
+# How to run unit tests
+
+```sh 
+mkdir build && cd build
+```
+
+```sh
+cmake ..
+```
+
+```sh
+make
+```
+
+```sh
+./unit_test`
+```
 # How to launch
 
 ```
