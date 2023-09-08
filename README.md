@@ -10,7 +10,18 @@
 
 In order to compile and run `name`, you will need the following dependencies:
 
+Ensure you have the wxWidgets library installed, along with its development headers.
 
+
+```sh
+sudo apt-get install libwxgtk3.0-dev
+```
+
+Ensure you have a C++ compiler. If using g++:
+
+```sh
+sudo apt-get install g++
+```
 # How to compile
 
 Follow these steps:
@@ -31,6 +42,13 @@ Compile the application with make:
 ```sh
 make
 ```
+# How to launch
+
+In the root directory of the project:
+
+```
+./name
+```
 
 # How to run unit tests
 
@@ -48,11 +66,6 @@ make
 
 ```sh
 ./unit_test`
-```
-# How to launch
-
-```
-./name
 ```
 
 # License
