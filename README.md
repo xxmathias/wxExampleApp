@@ -21,7 +21,7 @@ Ensure you have a C++ compiler. If using g++:
 ```sh
 sudo apt-get install g++
 ```
-# How to compil
+# How to compile
 
 Clone this repository to your local machine:
 
@@ -48,6 +48,8 @@ In the root directory of the project:
 ```
 
 # How to run unit tests
+
+In the root directory of the project:
 
 ```sh 
 mkdir build && cd build
