@@ -64,7 +64,7 @@ make
 ```
 
 ```sh
-./unit_test`
+./unit_test
 ```
 
 # License
