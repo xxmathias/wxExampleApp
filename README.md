@@ -59,7 +59,10 @@ Got Catch2? Sweet! Every time you mess with the classes we're testing, `name` ru
 Old build files hanging around? Ditch 'em. Clean builds = less weird bugs. It's like spring cleaning, but for your code. 🧹
 
 
-
+=======
+```sh
+./unit_test
+```
 
 # License
 
