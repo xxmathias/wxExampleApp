@@ -13,7 +13,7 @@ Ensure you have the wxWidgets library installed, along with its development head
 
 
 ```sh
-sudo apt-get install libwxgtk3.0-dev
+sudo apt-get install wx2.8-headers libwxgtk2.8-0 libwxgtk2.8-dev
 ```
 
 Ensure you have a C++ compiler. If using g++:
