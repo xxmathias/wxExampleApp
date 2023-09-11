@@ -1,8 +1,8 @@
 # Set the minimum required version of CMake
-cmake_minimum_required(VERSION 3.27.2)
+cmake_minimum_required(VERSION 3.1)
 
 # Define the project name
-project(WxExampleApp)
+project(name)
 
 # Find the necessary wxWidgets packages
 find_package(wxWidgets REQUIRED gl core base OPTIONAL_COMPONENTS net)
@@ -23,7 +23,7 @@ add_executable(${PROJECT_NAME} ${MAIN_APP_SOURCE_FILES})
 target_link_libraries(${PROJECT_NAME} ${wxWidgets_LIBRARIES})
 
 # Set the output directory for the app's executable
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/out/bin)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/build)
 
 # Enable testing
 enable_testing()
