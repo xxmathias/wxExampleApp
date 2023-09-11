@@ -1,6 +1,6 @@
 #include <vector>
 #include <algorithm>
-#include "unit.hpp"
+#include "../include/unit.hpp"
 
 std::vector<Unit*> available_units(const std::vector<Unit*>& all_units, const std::vector<Unit*>& active_units) {
     std::vector<Unit*> available;

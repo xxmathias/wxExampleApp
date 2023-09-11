@@ -1,5 +1,5 @@
-#include "app.hpp"
-#include "mainframe.hpp"
+#include "../include/app.hpp"
+#include "../include/mainframe.hpp"
 #include <wx/wx.h>
 
 bool App::OnInit() {

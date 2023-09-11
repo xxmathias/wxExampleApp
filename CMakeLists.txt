@@ -1,14 +1,14 @@
-# Minimum CMake version? Because we're not cavemen.
+# Set the minimum required version of CMake
 cmake_minimum_required(VERSION 3.27.2)
 
-# "name"? Really? Well, every project needs a name, even if it's... this.
-project(name)
+# Define the project name
+project(WxExampleApp)
 
-# Hunting for wxWidgets. It's like a treasure hunt, but less fun.
+# Find the necessary wxWidgets packages
 find_package(wxWidgets REQUIRED gl core base OPTIONAL_COMPONENTS net)
 include(${wxWidgets_USE_FILE})
 
-# Our main app's source files. The "A-Team" of our project.
+# List source files for the main app
 set(MAIN_APP_SOURCE_FILES
   src/app.cpp
   src/unit.cpp
@@ -16,40 +16,38 @@ set(MAIN_APP_SOURCE_FILES
   src/NewWindow.cpp
 )
 
-# Turning source files into an executable. It's like magic, but more tedious.
+# Create an executable for our main app
 add_executable(${PROJECT_NAME} ${MAIN_APP_SOURCE_FILES})
 
-# Linking with wxWidgets. Because our app needs some fancy shoes to dance.
+# Link the main app with the wxWidgets libraries
 target_link_libraries(${PROJECT_NAME} ${wxWidgets_LIBRARIES})
 
-# Where should our masterpiece end up? In the limelight, of course.
+# Set the output directory for the app's executable
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/out/bin)
 
-# Testing? Sure, because we're not confident enough in our code.
+# Enable testing
 enable_testing()
 
-# Our test files. The "B-Team", but don't tell them that.
+# List source files for our tests
 set(TEST_SOURCE_FILES
   tests/unit_test.cpp
   tests/catch_amalgamated.cpp
-  src/unit.cpp
+  src/unit.cpp # If our tests depend on this file
 )
 
-# Making an executable for tests. Because they need to feel special too.
+# Create an executable for our tests
 add_executable(tests_exe ${TEST_SOURCE_FILES})
 
-# Including directories for our "B-Team".
-target_include_directories(tests_exe PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/tests)
+# Include the Catch2 amalgamated version
+target_include_directories(tests_exe PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
-# Naming our test. It's like naming a pet, but less commitment.
+# Name the test and specify which executable to run for it
 add_test(NAME UnitTests COMMAND tests_exe)
 
-# Running tests after building. Because we love living on the edge.
+# Automatically run tests after building
 add_custom_command(
   TARGET tests_exe
   POST_BUILD
   COMMAND tests_exe
   WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}
 )
-
-# And that's it. Wasn't that... fun?
