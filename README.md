@@ -40,7 +40,7 @@ Compile the application with make:
 
 ```sh
 cmake ..
-cmake --bild .
+cmake --build .
 ```
 # How to launch
 
