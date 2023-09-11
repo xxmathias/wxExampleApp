@@ -1,7 +1,6 @@
 #define CATCH_CONFIG_MAIN
-
-#include "unit.hpp"
 #include "catch_amalgamated.hpp"
+#include "unit.hpp"
 
 TEST_CASE("Available units are correctly identified")
 {
