@@ -1,4 +1,4 @@
-#include "mainframe.hpp"
+#include "../include/mainframe.hpp"
 #include <wx/wx.h>
 #include <iostream>
 #include <sstream>
@@ -8,7 +8,7 @@
 #include <wx/string.h>
 #include <wx/spinctrl.h>
 #include <wx/file.h>
-#include "NewWindow.hpp"
+#include "../include/NewWindow.hpp"
 
 void MainFrame::OnSaveAs(wxCommandEvent& event) {
     wxString defaultFileName = "test.md";

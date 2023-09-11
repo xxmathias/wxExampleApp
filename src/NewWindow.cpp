@@ -1,5 +1,5 @@
 // NewWindow.cpp
-#include "NewWindow.hpp"
+#include "../include/NewWindow.hpp"
 
 NewWindow::NewWindow(const wxString &title, const wxString &textInput)
     : wxFrame(nullptr, wxID_ANY, title, wxDefaultPosition, wxSize(300, 200)) {

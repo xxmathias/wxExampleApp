@@ -29,40 +29,37 @@ Clone this repository to your local machine:
 git clone 
 ```
 
-Navigate to the project's directory:
+Navigate to the project's directory and create build and switch there:
 
 ```sh
 cd name
+mkdir build
+cd build
 ```
 Compile the application with make:
 
 ```sh
-make
+cmake ..
+cmake --build .
 ```
 # How to launch
 
-In the root directory of the project:
+In the build directory of the project:
 
 ```
 ./name
 ```
+# DONE! 
+## Testing with Catch2
 
-# How to run unit tests
+Got Catch2? Sweet! Every time you mess with the classes we're testing, `name` runs its tests. So if you break something, we'll know. 🚀
 
-In the root directory of the project:
+## Clean Builds
 
-```sh 
-mkdir build && cd build
-```
+Old build files hanging around? Ditch 'em. Clean builds = less weird bugs. It's like spring cleaning, but for your code. 🧹
 
-```sh
-cmake ..
-```
 
-```sh
-make
-```
-
+=======
 ```sh
 ./unit_test
 ```

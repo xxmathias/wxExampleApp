@@ -1,35 +1,53 @@
-cmake_minimum_required(VERSION 3.18)
-project(name VERSION 1.0)
+# Set the minimum required version of CMake
+cmake_minimum_required(VERSION 3.1)
 
-set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Wconversion -pthread")
+# Define the project name
+project(name)
 
-# Include directories for wxWidgets
-include_directories(/usr/lib/x86_64-linux-gnu/wx/include/gtk3-unicode-3.0)
-include_directories(/usr/include/wx-3.0)
+# Find the necessary wxWidgets packages
+find_package(wxWidgets REQUIRED gl core base OPTIONAL_COMPONENTS net)
+include(${wxWidgets_USE_FILE})
 
-# Define wxWidgets libraries
-set(WX_LIBS
-    -lwx_gtk3u_xrc-3.0
-    -lwx_gtk3u_html-3.0
-    -lwx_gtk3u_qa-3.0
-    -lwx_gtk3u_adv-3.0
-    -lwx_gtk3u_core-3.0
-    -lwx_baseu_xml-3.0
-    -lwx_baseu_net-3.0
-    -lwx_baseu-3.0
+# List source files for the main app
+set(MAIN_APP_SOURCE_FILES
+  src/app.cpp
+  src/unit.cpp
+  src/mainframe.cpp
+  src/NewWindow.cpp
 )
 
-include(CTest)
+# Create an executable for our main app
+add_executable(${PROJECT_NAME} ${MAIN_APP_SOURCE_FILES})
 
-set(CPP_SRCS  # all non-main source files
-  unit.cpp
+# Link the main app with the wxWidgets libraries
+target_link_libraries(${PROJECT_NAME} ${wxWidgets_LIBRARIES})
+
+# Set the output directory for the app's executable
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/build)
+
+# Enable testing
+enable_testing()
+
+# List source files for our tests
+set(TEST_SOURCE_FILES
+  tests/unit_test.cpp
+  tests/catch_amalgamated.cpp
+  src/unit.cpp # If our tests depend on this file
 )
 
-add_library(catch2 catch_amalgamated.cpp)
+# Create an executable for our tests
+add_executable(tests_exe ${TEST_SOURCE_FILES})
 
-add_executable(unit_test unit.cpp unit_test.cpp)
-target_link_libraries(unit_test catch2)
-add_test(NAME unit_test COMMAND unit_test)
+# Include the Catch2 amalgamated version
+target_include_directories(tests_exe PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
-  
+# Name the test and specify which executable to run for it
+add_test(NAME UnitTests COMMAND tests_exe)
+
+# Automatically run tests after building
+add_custom_command(
+  TARGET tests_exe
+  POST_BUILD
+  COMMAND tests_exe
+  WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}
+)
