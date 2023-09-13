@@ -13,7 +13,7 @@ Ensure you have the wxWidgets library installed, along with its development head
 
 
 ```sh
-sudo apt-get install wx2.8-headers libwxgtk2.8-0 libwxgtk2.8-dev
+sudo apt-get install libwxgtk3.0-gtk3-dev
 ```
 
 Ensure you have a C++ compiler. If using g++:
@@ -26,13 +26,13 @@ sudo apt-get install g++
 Clone this repository to your local machine:
 
 ```sh
-git clone 
+git clone git@github.com:Satalicious/wxExampleApp.git
 ```
 
 Navigate to the project's directory:
 
 ```sh
-cd name
+cd wxExampleApp/
 ```
 Compile the application with make:
 
