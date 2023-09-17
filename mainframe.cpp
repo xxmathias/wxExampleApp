@@ -9,6 +9,7 @@
 #include <wx/spinctrl.h>
 #include <wx/file.h>
 #include "NewWindow.hpp"
+#include "library.hpp"
 
 void MainFrame::OnSaveAs(wxCommandEvent& event) {
     wxString defaultFileName = "test.md";
@@ -213,5 +214,8 @@ MainFrame::MainFrame(const wxString &title)
   menuBar->Bind(wxEVT_MENU, &MainFrame::OnAbout, this, wxID_ABOUT);
   menuBar->Bind(wxEVT_MENU, &MainFrame::OnExit, this, wxID_EXIT);
   menuBar->Bind(wxEVT_MENU, &MainFrame::OnSaveAs, this, wxID_SAVE);
+
+  
+
 }
 
